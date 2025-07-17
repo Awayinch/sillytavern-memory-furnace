@@ -1,0 +1,7 @@
+{
+  "name": "Memory Furnace",
+  "description": "融合 Airtable 的记忆片段，生成剧情回忆。",
+  "version": "1.0.0",
+  "author": "YourName",
+  "entry": "main.js"
+}
