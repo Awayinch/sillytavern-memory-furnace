@@ -1,7 +1,10 @@
 {
-  "name": "Memory Furnace",
-  "description": "融合 Airtable 的记忆片段，生成剧情回忆。",
+  "name": "sillytavern-memory-furnace",
   "version": "1.0.0",
+  "title": "记忆熔炉",
+  "description": "通过熔炉服务生成剧情。",
   "author": "无力揍人",
-  "entry": "main.js"
+  "api_version": 2,
+  "type": "slash_command",
+  "entrypoint": "main.js"
 }
