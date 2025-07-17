@@ -10,13 +10,30 @@ export function initExtension(extensionAPI) {
         const response = await fetch("http://localhost:8800/fuse", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt })
+          body: JSON.stringify({
+            messages: [
+              { role: "user", content: prompt }
+            ]
+          })
         });
-        const result = await response.text();
-        extensionAPI.sendMessage(result);
+
+        if (!response.ok) {
+          throw new Error(`HTTP错误 ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.reply) {
+          extensionAPI.sendMessage(data.reply);
+        } else if (data.error) {
+          extensionAPI.sendMessage("❌ 熔合失败：" + data.error);
+        } else {
+          extensionAPI.sendMessage("❌ 熔合失败：未知错误");
+        }
       } catch (error) {
         extensionAPI.sendMessage("❌ 熔合失败：" + error.message);
       }
     }
   });
 }
+
